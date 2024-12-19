@@ -34,7 +34,9 @@ int main(void)
 		break;
 	}
 
-
+if (strcmp(line, "ls") == 0 || (strcmp(line, "l") == 0))
+{
+	excave (/bin/bash/ls)
 
 	if (*line == '\0')
 	continue;
