@@ -37,7 +37,26 @@ int main(void)
 			break;
 		}
 
-
+		else if (strcmp(args[0], "ls") == 0 || strcmp(args[0], "l") == 0)
+		{
+			hijo = fork();
+			if (hijo == 0)
+			{
+				if (execve("/bin/ls", args, NULL) == -1)
+				{
+					perror("Shell: Comando no encontrado");
+                                        exit(EXIT_FAILURE);
+				}
+			}
+			else if (hijo > 0)
+			{
+				wait(&status);
+			}
+			else
+			{
+				perror ("error al crear el proceso");
+			}
+		}
 		else
 		{
 			hijo = fork();
