@@ -11,7 +11,9 @@ comando_t *function_pointer(void)
 {
 
 	static comando_t comandos[] = {
-		{"cd",comando_cd},
+		{"ls", comando_ls},
+		{"l", comando_ls},
+		{"cd", comando_cd},
 		{"exit", comando_exit},
 		{NULL, NULL}
 	};

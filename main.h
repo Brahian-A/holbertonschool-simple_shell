@@ -15,6 +15,9 @@ typedef struct estructura
 }comando_t;
 
 comando_t *function_pointer(void);
+
+
+void comando_ls(char **args);
 void comando_cd(char **args);
 void comando_exit(char **args);
 
