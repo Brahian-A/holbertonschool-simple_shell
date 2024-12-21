@@ -5,9 +5,10 @@ int main(void)
 	char *line = NULL;
 	size_t len = 0;
 	char *args[69];
-	int i, status;
+	int i, status, found;
 	pid_t hijo;
-	
+	comando_t *comandos = function_pointer();
+
 	while (printf("$ "), getline(&line, &len, stdin) != -1)
 	{
 		line[strcspn(line, "\n")] = '\0';	
@@ -20,32 +21,27 @@ int main(void)
 		while (args[i] != NULL)
 			args[++i] = strtok(NULL, " ");
 		
-		if (strcmp(args[0], "cd") == 0)
+		found = 0;
+		for (i = 0; comandos[i].comando != NULL; i++)
 		{
-			if (args[1] == NULL)
+			if (strcmp(args[0], comandos[i].comando) == 0)
 			{
-				fprintf(stderr, "Shell_Error: falta argumento para cd\n");
-			}
-			else if (chdir(args[1]) != 0)
-			{
-				perror("Error al cambiar de directorio");
+				comandos[i].funcion(args);
+				found = 1;
+				break;
 			}
 		}
-		else if (strcmp(args[0], "exit") == 0)
+		
+		if (!found)
 		{
-			printf("Saliendo del programa...\n");
-			break;
-		}
-
-		else if (strcmp(args[0], "ls") == 0 || strcmp(args[0], "l") == 0)
-		{
+		
 			hijo = fork();
 			if (hijo == 0)
 			{
-				if (execve("/bin/ls", args, NULL) == -1)
+				if (execve(args[0], args, NULL) == -1)
 				{
-					perror("Shell: Comando no encontrado");
-                                        exit(EXIT_FAILURE);
+						perror("Shell: Comando no encontrado");
+                                        	exit(EXIT_FAILURE);
 				}
 			}
 			else if (hijo > 0)
@@ -53,26 +49,6 @@ int main(void)
 				wait(&status);
 			}
 			else
-			{
-				perror ("error al crear el proceso");
-			}
-		}
-		else
-		{
-			hijo = fork();
-			if (hijo == 0)
-			{
-				if (execve(args[0], args, NULL) == -1)
-				{
-					perror("Shell: Comando no encontrado");
-					exit(EXIT_FAILURE);
-				}
-			}
-			else if (hijo > 0)
-			{
-				wait(&status);
-			}
-			else 
 			{
 				perror ("error al crear el proceso");
 			}

@@ -8,5 +8,15 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
+typedef struct estructura
+{
+	char *comando;
+	void (*funcion)(char **args);
+}comando_t;
+
+comando_t *function_pointer(void);
+void comando_cd(char **args);
+void comando_exit(char **args);
+
 
 #endif
