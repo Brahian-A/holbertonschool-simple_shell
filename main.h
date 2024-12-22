@@ -32,5 +32,5 @@ void comando_ls(char **args);
 void comando_cd(char **args);
 void comando_exit(char **args);
 void comando_pwd(char **args);
-
+void comando_clear(char **args);
 #endif
