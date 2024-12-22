@@ -9,6 +9,7 @@
 #include <sys/wait.h>
 
 int tokenizar(char *line, char *args[]);
+char *buscar_path(char *comando);
 
 typedef struct estructura
 {
