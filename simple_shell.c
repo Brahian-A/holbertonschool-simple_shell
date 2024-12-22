@@ -13,7 +13,7 @@ int main(void)
 	while (printf("$ "), getline(&line, &len, stdin) != -1)
 	{
 		tokenizar(line, args);
-		
+
 		if (args[0] == NULL)
 			continue;
 
@@ -28,13 +28,13 @@ int main(void)
 				break;
 			}
 		}
-		
+
 		if (!found)
 		{
 			comando_con_ruta = buscar_path(args[0]);
 			if (comando_con_ruta != NULL)
 			{
-			
+
 				fprintf(stderr, "Comando no encontrado: %s\n", args[0]);
 				continue;
 			}
@@ -44,7 +44,7 @@ int main(void)
 				if (execve(comando_con_ruta, args, NULL) == -1)
 				{
 					perror("Shell: Comando no encontrado");
-                                       	exit(EXIT_FAILURE);
+					exit(EXIT_FAILURE);
 				}
 			}
 			else if (hijo > 0)
@@ -53,7 +53,7 @@ int main(void)
 			}
 			else
 			{
-				perror ("error al crear el proceso");
+				perror("error al crear el proceso");
 			}
 		}
 	}
@@ -62,7 +62,7 @@ int main(void)
 		printf("\nEOF detectado. Saliendo...\n");
 
 	free(line);
-	return 0;
-	
+	return (0);
+
 }
 

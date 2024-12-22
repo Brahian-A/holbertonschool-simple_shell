@@ -11,6 +11,7 @@
 
 int tokenizar(char *line, char *args[]);
 char *buscar_path(char *comando);
+int ruta(char *direct, char *comando, char *comando_ruta, struct stat *buffer);
 
 /**
  *struct estructura- Estructura que asocia un comando con una funció

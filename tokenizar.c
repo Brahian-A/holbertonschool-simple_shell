@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- *
- *
- *
- * 
+ *tokenizar - Divide una cadena en tokens (argumentos)
+ *@line: La línea de entrada que contiene los argumentos
+ *@args: Un arreglo de punteros donde se almacenarán los tokens
+ * Return: El número de tokens (argumentos) encontrados
  */
 
 
@@ -19,8 +19,8 @@ int tokenizar(char *line, char *args[])
 	while (args[i] !=  NULL)
 	{
 		i++;
-		args[i] = strtok(NULL, " " );
+		args[i] = strtok(NULL, " ");
 	}
-	return(i);
+	return (i);
 }
 
