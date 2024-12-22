@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
+int tokenizar(char *line, char *args[]);
+
 typedef struct estructura
 {
 	char *comando;

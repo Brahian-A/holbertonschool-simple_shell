@@ -7,21 +7,18 @@ int main(void)
 	char *args[69];
 	int i, status, found;
 	pid_t hijo;
-	comando_t *comandos = function_pointer();
+	comando_t *comandos;
+	int num_args;
 
 	while (printf("$ "), getline(&line, &len, stdin) != -1)
 	{
-		line[strcspn(line, "\n")] = '\0';	
-
-		if (*line == '\0')
+		num_args = tokenizar(line, args);
+		
+		if (args[0] == NULL)
 			continue;
 
-		i = 0;
-		args[i] = strtok(line, " ");
-		while (args[i] != NULL)
-			args[++i] = strtok(NULL, " ");
-		
 		found = 0;
+		comandos = function_pointer();
 		for (i = 0; comandos[i].comando != NULL; i++)
 		{
 			if (strcmp(args[0], comandos[i].comando) == 0)
