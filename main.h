@@ -7,8 +7,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 
 int tokenizar(char *line, char *args[]);
+char *buscar_path(char *comando);
 char *buscar_path(char *comando);
 
 typedef struct estructura

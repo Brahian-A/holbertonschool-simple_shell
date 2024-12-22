@@ -8,12 +8,11 @@ int main(void)
 	int i, status, found;
 	pid_t hijo;
 	comando_t *comandos;
-	int num_args;
 	char *comando_con_ruta;
 
 	while (printf("$ "), getline(&line, &len, stdin) != -1)
 	{
-		num_args = tokenizar(line, args);
+		tokenizar(line, args);
 		
 		if (args[0] == NULL)
 			continue;
@@ -32,22 +31,26 @@ int main(void)
 		
 		if (!found)
 		{
-			comando_con_ruta = buscar_comando_en_path(args[0]);
+			comando_con_ruta = buscar_path(args[0]);
 			if (comando_con_ruta != NULL)
 			{
-				hijo = fork();
-				if (hijo == 0)
+			
+				fprintf(stderr, "Comando no encontrado: %s\n", args[0]);
+				continue;
+			}
+			hijo = fork();
+			if (hijo == 0)
+			{
+				if (execve(comando_con_ruta, args, NULL) == -1)
 				{
-					if (execve(args[0], args, NULL) == -1)
-					{
-						perror("Shell: Comando no encontrado");
-                                        	exit(EXIT_FAILURE);
-					}
+					perror("Shell: Comando no encontrado");
+                                       	exit(EXIT_FAILURE);
 				}
-				else if (hijo > 0)
-				{
-					wait(&status);
-				}
+			}
+			else if (hijo > 0)
+			{
+				wait(&status);
+			}
 			else
 			{
 				perror ("error al crear el proceso");
