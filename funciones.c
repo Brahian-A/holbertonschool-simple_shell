@@ -67,3 +67,23 @@ void comando_exit(char **args)
 	printf("Saliendo del programa...\n");
 	exit(0);
 }
+
+/**
+ *
+ *
+ *
+ */
+
+void comando_pwd(char **args)
+{
+	char directorio[1024];
+
+	if (getcwd(directorio, sizeof(directorio)) != NULL)
+	{
+		printf("%s\n", directorio);
+	}
+	else
+	{
+		perror("pwd");
+	}
+}

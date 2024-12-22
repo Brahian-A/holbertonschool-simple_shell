@@ -11,7 +11,6 @@
 
 int tokenizar(char *line, char *args[]);
 char *buscar_path(char *comando);
-char *buscar_path(char *comando);
 
 typedef struct estructura
 {
@@ -25,6 +24,6 @@ comando_t *function_pointer(void);
 void comando_ls(char **args);
 void comando_cd(char **args);
 void comando_exit(char **args);
-
+void comando_pwd(char **args);
 
 #endif
