@@ -1,10 +1,8 @@
 #include "main.h"
 
 /**
- *
- *
- *
- *
+ *comando_ls -Ejecuta el comando ls para listar el contenido de un directorio
+ *@args: Argumentos del comando ls (se pasa como array de cadenas)
  */
 
 void comando_ls(char **args)
@@ -34,32 +32,28 @@ void comando_ls(char **args)
 
 
 /**
-*
-*
-*
-*
+*comando_cd - Cambia el directorio de trabajo usando el comando `cd`
+*@args: Argumentos del comando cd donde args[1] es el directorio al que cambiar
 */
 
 
 
 void comando_cd(char **args)
 {
-    if (args[1] == NULL)
-    {
-        fprintf(stderr, "Shell_Error: falta argumento para cd\n");
-    }
-    else if (chdir(args[1]) != 0)
-    {
-        perror("Error al cambiar de directorio");
-    }
+	if (args[1] == NULL)
+	{
+		fprintf(stderr, "Shell_Error: falta argumento para cd\n");
+	}
+	else if (chdir(args[1]) != 0)
+	{
+		perror("Error al cambiar de directorio");
+	}
 }
 
 
 /**
- *
- *
- *
- *
+ *comando_exit - Sale de la shell
+ *@args: Argumentos del comando `exit` (aunque no se usa en este caso)
  */
 
 void comando_exit(char **args)
@@ -69,9 +63,8 @@ void comando_exit(char **args)
 }
 
 /**
- *
- *
- *
+ *comando_pwd - Muestra el directorio de trabajo actual
+ *@args: Argumentos del comando `pwd` (no se usa en este caso)
  */
 
 void comando_pwd(char **args)

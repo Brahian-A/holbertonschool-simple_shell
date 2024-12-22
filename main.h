@@ -12,11 +12,17 @@
 int tokenizar(char *line, char *args[]);
 char *buscar_path(char *comando);
 
+/**
+ *struct estructura- Estructura que asocia un comando con una funció
+ * @comando: El nombre del comando.
+ * @funcion: Puntero a la función que se ejecutar cuando se llame al comando.
+ */
+
 typedef struct estructura
 {
 	char *comando;
 	void (*funcion)(char **args);
-}comando_t;
+} comando_t;
 
 comando_t *function_pointer(void);
 
