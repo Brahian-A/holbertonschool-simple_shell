@@ -1,14 +1,17 @@
 #include "main.h"
 
+/**
+ *main - Función principal de la shell personalizad
+ *Return: 0 en caso de éxito, otro valor en caso de erro
+ */
+
 int main(void)
 {
-	char *line = NULL;
 	size_t len = 0;
-	char *args[69];
+	char *args[69], *comando_con_ruta, *line = NULL;
 	int i, status, found;
 	pid_t hijo;
 	comando_t *comandos;
-	char *comando_con_ruta;
 
 	while (printf("$ "), getline(&line, &len, stdin) != -1)
 	{
@@ -29,35 +32,9 @@ int main(void)
 			}
 		}
 
-		if (!found)
-		{
-			comando_con_ruta = buscar_path(args[0]);
-			if (comando_con_ruta != NULL)
-			{
-
-				fprintf(stderr, "Comando no encontrado: %s\n", args[0]);
-				continue;
-			}
-			hijo = fork();
-			if (hijo == 0)
-			{
-				if (execve(comando_con_ruta, args, NULL) == -1)
-				{
-					perror("Shell: Comando no encontrado");
-					exit(EXIT_FAILURE);
-				}
-			}
-			else if (hijo > 0)
-			{
-				wait(&status);
-			}
-			else
-			{
-				perror("error al crear el proceso");
-			}
-		}
+		if (found == 0)
+			no_encontrado(args);
 	}
-
 	if (feof(stdin))
 		printf("\nEOF detectado. Saliendo...\n");
 
@@ -66,3 +43,43 @@ int main(void)
 
 }
 
+/**
+ *no_encontrado - maneja la ejecución de comandos no encontrado
+ *@args: arreglo de argumentos ingresados por el usuario
+ *
+ */
+
+
+void no_encontrado(char **args)
+{
+	char *comando_con_ruta;
+	pid_t hijo;
+	int status;
+
+	comando_con_ruta = buscar_path(args[0]);
+	if (comando_con_ruta == NULL)
+	{
+
+		fprintf(stderr, "Comando no encontrado: %s\n", args[0]);
+		return;
+	}
+
+	hijo = fork();
+	if (hijo == 0)
+	{
+		if (execve(comando_con_ruta, args, NULL) == -1)
+		{
+			perror("Shell: Comando no encontrado");
+			exit(EXIT_FAILURE);
+		}
+	}
+
+	else if (hijo > 0)
+	{
+		wait(&status);
+	}
+	else
+	{
+		perror("error al crear el proceso");
+	}
+}
