@@ -8,9 +8,8 @@
 int main(void)
 {
 	size_t len = 0;
-	char *args[69], *comando_con_ruta, *line = NULL;
-	int i, status, found;
-	pid_t hijo;
+	char *args[69], *line = NULL;
+	int i, found;
 	comando_t *comandos;
 
 	while (printf("$ "), getline(&line, &len, stdin) != -1)
