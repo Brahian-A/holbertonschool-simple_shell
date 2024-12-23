@@ -5,13 +5,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
 
 int tokenizar(char *line, char *args[]);
 char *buscar_path(char *comando);
 int ruta(char *direct, char *comando, char *comando_ruta, struct stat *buffer);
+void no_encontrado(char **args);
 
 /**
  *struct estructura- Estructura que asocia un comando con una funció
