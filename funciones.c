@@ -93,7 +93,7 @@ void comando_clear(char **args)
 	hijo = fork();
 	if (hijo == 0)
 	{
-		execvp("clear", args);
+		execvp("/bin/clear", args);
 		perror("Error ejecutando clear");
 		exit(EXIT_FAILURE);
 	}
