@@ -30,7 +30,7 @@ comando_t *function_pointer(void);
 
 void comando_ls(char **args);
 void comando_cd(char **args);
-void comando_pwd(void);
-void comando_exit(void);
+void comando_pwd(char **args);
+void comando_exit(char **args);
 void comando_clear(char **args);
 #endif
