@@ -15,6 +15,7 @@ comando_t *function_pointer(void)
 		{"cd", comando_cd},
 		{"exit", comando_exit},
 		{"clear", comando_clear},
+		{"cat", comando_cat},
 		{NULL, NULL}
 	};
 	return (comandos);
