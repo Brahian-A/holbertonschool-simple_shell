@@ -58,6 +58,7 @@ void comando_cd(char **args)
 
 void comando_exit(char **args)
 {
+	(void)args;
 	printf("Saliendo del programa...\n");
 	exit(0);
 }
@@ -68,8 +69,10 @@ void comando_exit(char **args)
  */
 
 void comando_pwd(char **args)
-{
+{ 
 	char directorio[1024];
+
+	(void)args;
 
 	if (getcwd(directorio, sizeof(directorio)) != NULL)
 	{
