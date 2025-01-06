@@ -55,7 +55,7 @@ char *buscar_path(char *comando, char *envp[])
 		free(path_copy);
 		return (NULL);
 	}
-	direct = strtok(path, ":");
+	direct = strtok(path_copy, ":");
 	while (direct != NULL)
 	{
 		if (ruta(direct, comando, comando_ruta, &buffer))

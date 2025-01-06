@@ -25,8 +25,10 @@ int main(int argc, char *argv[], char *envp[])
 			printf("$ ");
 
 		if (getline(&line, &len, stdin) == -1)
+		{
+			free(line);
 			break;
-
+		}
 		tokenizar(line, args);
 
 		if (args[0] == NULL)
@@ -91,4 +93,5 @@ void no_encontrado(char **args, char *envp[])
 	{
 		perror("error al crear el proceso");
 	}
+free(comando_con_ruta);
 }
