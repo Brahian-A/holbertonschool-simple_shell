@@ -2,10 +2,7 @@
 
 /**
  *main - Función principal de la shell personalizad
- *@argc: número de argumentos de la línea de comandosin usar
- *@argv: array de punteros a los argumentos de la línea de comandossin usar
- *@envp: array de punteros al entorno (sin usar directamente en esta función)
- * Return: 0 en caso de éxito, otro valor en caso de erro
+ *Return: 0 en caso de éxito, otro valor en caso de erro
  */
 
 int main(int argc, char *argv[], char *envp[])
@@ -16,8 +13,8 @@ int main(int argc, char *argv[], char *envp[])
 	comando_t *comandos;
 
 	(void)argc;
-	(void)argv;
-	(void)envp;
+       	(void)argv;
+       	(void)envp;
 
 	while (69)
 	{
@@ -43,19 +40,21 @@ int main(int argc, char *argv[], char *envp[])
 				break;
 			}
 		}
+
 		if (found == 0)
 			no_encontrado(args, envp);
 
 		free(line);
 		line = NULL;
 	}
+
 return (0);
 }
 
 /**
  *no_encontrado - maneja la ejecución de comandos no encontrado
  *@args: arreglo de argumentos ingresados por el usuario
- *@envp: array de punteros al entorno (sin usar directamente en esta función
+ *
  */
 
 

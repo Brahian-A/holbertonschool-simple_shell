@@ -68,19 +68,19 @@ void comando_exit(char **args)
  */
 void comando_pwd(char **args)
 {
-    char directorio[1024];
+	char directorio[1024];
 
-    (void)args;
+	(void)args;
 
-    if (getcwd(directorio, sizeof(directorio)) != NULL)
-    {
-        printf("%s\n", directorio);
-    }
-    else
-    {
-        perror("pwd");
-    }
-} 
+	if (getcwd(directorio, sizeof(directorio)) != NULL)
+	{
+		printf("%s\n", directorio);
+	}
+	else
+	{
+		perror("pwd");
+	}
+}
 
 /**
  *comando_clear - Limpia la terminal.
