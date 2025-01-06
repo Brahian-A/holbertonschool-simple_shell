@@ -5,7 +5,7 @@
  *Return: 0 en caso de éxito, otro valor en caso de erro
  */
 
-int main(void)
+int main(int argc, char *argv[], char *envp[])
 {
 	size_t len = 0;
 	char *args[69], *line = NULL;
@@ -32,10 +32,9 @@ int main(void)
 		}
 
 		if (found == 0)
-			no_encontrado(args);
+			no_encontrado(args, envp);
 	}
 	if (feof(stdin))
-		printf("\nEOF detectado. Saliendo...\n");
 
 	free(line);
 	return (0);
@@ -49,13 +48,13 @@ int main(void)
  */
 
 
-void no_encontrado(char **args)
+void no_encontrado(char **args, char *envp[])
 {
 	char *comando_con_ruta;
 	pid_t hijo;
 	int status;
 
-	comando_con_ruta = buscar_path(args[0]);
+	comando_con_ruta = buscar_path(args[0], envp);
 	if (comando_con_ruta == NULL)
 	{
 

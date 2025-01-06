@@ -9,10 +9,10 @@
 #include <sys/stat.h>
 
 int tokenizar(char *line, char *args[]);
-char *buscar_path(char *comando);
+char *buscar_path(char *comando, char *envp[]);
 int ruta(char *direct, char *comando, char *comando_ruta, struct stat *buffer);
-void no_encontrado(char **args);
-
+void no_encontrado(char **args, char *envp[]);
+char *obtener_path(char *envp[]);
 /**
  *struct estructura- Estructura que asocia un comando con una funció
  * @comando: El nombre del comando.

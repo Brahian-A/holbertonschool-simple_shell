@@ -1,14 +1,36 @@
 #include "main.h"
 
 /**
+ *obtener_path - Busca y devuelve el valor de la variable PATH en el entorno.
+ *@envp: Matriz de cadenas que representa las variables de entorno.
+ *Return: Puntero a la cadena que contiene el valor de PATH,
+ */
+
+char *obtener_path(char *envp[])
+{
+	int i = 0;
+
+	while (envp[i] != NULL)
+	{
+		if (strncmp(envp[i], "PATH=", 5) == 0)
+		{
+			return (envp[i] + 5);
+		}
+		i++;
+	}
+	return (NULL);
+}
+
+
+/**
  *buscar_path - Busca un comando en los directorios del PATH
  *@comando: Nombre del comando a buscar
  *Return: Ruta completa del comando si se encuentra, NULL si no se encuentra
  */
 
-char *buscar_path(char *comando)
+char *buscar_path(char *comando, char *envp[])
 {
-	char *comando_ruta, *direct, *path_copy = NULL, *path = getenv("PATH");
+	char *comando_ruta, *direct, *path_copy = NULL, *path = obtener_path(envp);
 	struct stat buffer;
 
 	if (comando[0] == '/')
