@@ -41,6 +41,7 @@ char *buscar_path(char *comando, char *envp[])
 		}
 		return (NULL);
 	}
+
 	path_copy = strdup(path);
 	if (path_copy == NULL)
 	{
