@@ -36,6 +36,9 @@ int main(int argc, char *argv[], char *envp[])
 
 		if (found == 0)
 			no_encontrado(args, envp);
+
+		free(line);
+		line = NULL;
 	}
 
 return(0);
