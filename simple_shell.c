@@ -16,7 +16,7 @@ int main(int argc, char *argv[], char *envp[])
 
 	while (getline(&line, &len, stdin) != -1)
 	{
-		printf("$ ");
+		printf("$");
 		tokenizar(line, args);
 
 		if (args[0] == NULL)
