@@ -36,10 +36,7 @@ int main(int argc, char *argv[], char *envp[])
 		if (found == 0)
 			no_encontrado(args, envp);
 	}
-	if (feof(stdin))
 
-	free(line);
-	return (0);
 
 }
 
