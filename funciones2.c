@@ -7,9 +7,10 @@
 
 void comando_cat(char **args)
 {
-	(void)args;
 	pid_t hijo;
 	int status;
+
+	(void)args;
 
 	hijo = fork();
 	if (hijo == 0)
@@ -25,7 +26,7 @@ void comando_cat(char **args)
 		wait(&status);
 	}
 
-	else
+else
 	{
 		perror("Error en el proceso cat");
 	}

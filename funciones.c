@@ -58,14 +58,21 @@ void comando_cd(char **args)
 
 void comando_exit(char **args)
 {
+<<<<<<< HEAD
     (void)args;
     exit(0);
+=======
+	(void)args;
+	printf("Saliendo del programa...\n");
+	exit(0);
+>>>>>>> 6a1cdad5a0dcf84d4902118b7b094b105201ccf0
 }
 /**
  *comando_pwd - Muestra el directorio de trabajo actual
  *@args: Argumentos del comando `pwd` (no se usa en este caso)
  */
 void comando_pwd(char **args)
+<<<<<<< HEAD
 {
     char directorio[1024];
 
@@ -79,6 +86,21 @@ void comando_pwd(char **args)
     {
         perror("pwd");
     }
+=======
+{ 
+	char directorio[1024];
+
+	(void)args;
+
+	if (getcwd(directorio, sizeof(directorio)) != NULL)
+	{
+		printf("%s\n", directorio);
+	}
+	else
+	{
+		perror("pwd");
+	}
+>>>>>>> 6a1cdad5a0dcf84d4902118b7b094b105201ccf0
 }
 /**
  *comando_clear - Limpia la terminal.
