@@ -11,6 +11,8 @@ int main(int argc, char *argv[], char *envp[])
 	char *args[69], *line = NULL;
 	int i, found;
 	comando_t *comandos;
+	
+	(void)argc; (void)argv; (void)envp;
 
 	while (printf("$ "), getline(&line, &len, stdin) != -1)
 	{
