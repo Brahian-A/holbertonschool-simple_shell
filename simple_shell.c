@@ -95,7 +95,7 @@ void no_encontrado(char **args, char *envp[])
 	}
 	if (comando_con_ruta != NULL)
 	{
-		if (comando_con_ruta != NULL)
+		free(comando_con_ruta);
 	}
 
 }
