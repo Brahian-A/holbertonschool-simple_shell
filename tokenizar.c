@@ -23,4 +23,3 @@ int tokenizar(char *line, char *args[])
 	}
 	return (i);
 }
-
