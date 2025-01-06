@@ -68,7 +68,7 @@ void no_encontrado(char **args, char *envp[])
 	hijo = fork();
 	if (hijo == 0)
 	{
-		if (execve(comando_con_ruta, args, NULL) == -1)
+		if (execve(comando_con_ruta, args, envp) == 1)
 		{
 			perror("Shell: Comando no encontrado");
 			exit(EXIT_FAILURE);
