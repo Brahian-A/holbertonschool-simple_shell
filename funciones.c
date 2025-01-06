@@ -58,42 +58,45 @@ void comando_cd(char **args)
 
 void comando_exit(char **args)
 {
-	printf("Saliendo del programa...\n");
-	exit(0);
+    (void)args;
+    exit(0);
 }
-
 /**
  *comando_pwd - Muestra el directorio de trabajo actual
  *@args: Argumentos del comando `pwd` (no se usa en este caso)
  */
-
 void comando_pwd(char **args)
 {
-	char directorio[1024];
+    char directorio[1024];
 
-	if (getcwd(directorio, sizeof(directorio)) != NULL)
-	{
-		printf("%s\n", directorio);
-	}
-	else
-	{
-		perror("pwd");
-	}
+    (void)args;
+
+    if (getcwd(directorio, sizeof(directorio)) != NULL)
+    {
+        printf("%s\n", directorio);
+    }
+    else
+    {
+        perror("pwd");
+    }
 }
-
 /**
  *comando_clear - Limpia la terminal.
  *@args: Argumentos de la línea de comando(no se utilizan en este caso).
  */
 
-void comando_clear(char **args)
+void comando_clear(char **arg)
 {
 	pid_t hijo;
 
 	hijo = fork();
 	if (hijo == 0)
 	{
+<<<<<<< HEAD
 		execvp("/bin/clear", args);
+=======
+		execvp("/bin/clear", arg);
+>>>>>>> main
 		perror("Error ejecutando clear");
 		exit(EXIT_FAILURE);
 	}
