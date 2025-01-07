@@ -91,9 +91,9 @@ void no_encontrado(char **args, char *envp[])
 	}
 	else
 	{
-		perror("error al crear el proceso");
+		perror("error al crear el proceso"); /* si no es 0 o >0 es que hubo un error al crear el proceso */
 	}
-	if (comando_con_ruta != NULL)
+	if (comando_con_ruta != NULL) /*si comando con ruta es distinto de null significa que hay algo adentro de comando con ruta, ahi que lo libere */  
 	{
 		free(comando_con_ruta);
 		comando_con_ruta = NULL;

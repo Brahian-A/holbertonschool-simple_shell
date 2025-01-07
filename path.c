@@ -10,15 +10,15 @@ char *obtener_path(char *envp[])
 {
 	int i = 0;
 
-	while (envp[i] != NULL)
+	while (envp[i] != NULL) /*el while recorre cada elemento de envp que es una array que contiene todas las variables de entorno hasta llegar a la ultima  */
 	{
-		if (strncmp(envp[i], "PATH=", 5) == 0)
+		if (strncmp(envp[i], "PATH=", 5) == 0) /* compara en que posicion de envp esta y si es igual a path  */
 		{
-			return (envp[i] + 5);
+			return (envp[i] + 5); /*si encuentra la variable path devuelve la cadena que comienza justo dsp de path, que es el valor real de path  */
 		}
-		i++;
+		i++; /*si no encontro path, se incrementa i++ para seguir a la siguiente variable de entorno */
 	}
-	return (NULL);
+	return (NULL); /* si no enconto path en ninguna parte del arreglo, retorna null */
 }
 
 
