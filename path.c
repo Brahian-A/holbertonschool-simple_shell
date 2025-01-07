@@ -46,6 +46,7 @@ char *buscar_path(char *comando, char *envp[])
 	if (path_copy == NULL)
 	{
 		perror("Error duplicando PATH");
+		free(path_copy);
 		return (NULL);
 	}
 	comando_ruta = malloc(1024);
