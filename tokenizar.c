@@ -15,11 +15,11 @@ int tokenizar(char *line, char *args[])
 
 	line[strcspn(line, "\n")] = '\0';
 
-	args[i] = strtok(line, " ");
+	args[i] = strtok(line, " \t");
 	while (args[i] !=  NULL)
 	{
 		i++;
-		args[i] = strtok(NULL, " ");
+		args[i] = strtok(NULL, " \t");
 	}
 	return (i);
 }
