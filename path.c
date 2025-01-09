@@ -66,7 +66,6 @@ char *buscar_path(char *comando, char *envp[])
 		}
 		direct = strtok(NULL, ":");
 	}
-	free(comando_ruta);
 	free(path_copy);
 	return (NULL);
 }

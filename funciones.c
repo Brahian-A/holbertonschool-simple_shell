@@ -56,10 +56,13 @@ void comando_cd(char **args)
  *@args: Argumentos del comando `exit` (aunque no se usa en este caso)
  */
 
-void comando_exit(char **args)
+void comando_exit(char **args, *line;)
 {
-	(void)args;
 	printf("Saliendo del programa...\n");
+	if (args)
+		free(args);
+	if (line)
+		free(line);
 	exit(0);
 }
 /**
