@@ -93,7 +93,10 @@ void no_encontrado(char **args, char *envp[])
 	{
 		perror("error al crear el proceso");
 	}
-
-free(comando_con_ruta);
-comando_con_ruta = NULL;
+	
+	if (comando_con_ruta != args[0])
+	{
+		free(comando_con_ruta);
+		comando_con_ruta = NULL;
+	}
 }
