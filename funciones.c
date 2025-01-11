@@ -59,7 +59,6 @@ void comando_cd(char **args)
 void comando_exit(char **args)
 {
 	(void)args;
-	printf("Saliendo del programa...\n");
 	exit(0);
 }
 /**
