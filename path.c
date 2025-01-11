@@ -29,46 +29,63 @@ char *obtener_path(char *envp[])
  */
 
 char *buscar_path(char *comando, char *envp[])
+char *buscar_path(char *comando, char *envp[])
 {
-	char *comando_ruta, *direct, *path_copy = NULL, *path = obtener_path(envp);
-	struct stat buffer;
+    char *comando_ruta, *direct, *path_copy = NULL, *path = obtener_path(envp);
+    struct stat buffer;
 
-	if (comando[0] == '/')
-	{
-		if (stat(comando, &buffer) == 0 && (buffer.st_mode & S_IXUSR))
-		{
-			return (comando);
-		}
-		return (NULL);
-	}
+    if (comando == NULL)
+    {
+        fprintf(stderr, "Error: Comando es NULL\n");
+        return (NULL);
+    }
 
-	path_copy = strdup(path);
-	if (path_copy == NULL)
-	{
-		perror("Error duplicando PATH");
-		free(path_copy);
-		return (NULL);
-	}
-	comando_ruta = malloc(1024);
-	if (comando_ruta == NULL)
-	{
-		perror("Error asignando memoria");
-		free(path_copy);
-		return (NULL);
-	}
-	direct = strtok(path_copy, ":");
-	while (direct != NULL)
-	{
-		if (ruta(direct, comando, comando_ruta, &buffer))
-		{
-			free(path_copy);
-			return (comando_ruta);
-		}
-		direct = strtok(NULL, ":");
-	}
-	free(path_copy);
-	return (NULL);
+    if (comando[0] == '/')
+    {
+        if (stat(comando, &buffer) == 0 && (buffer.st_mode & S_IXUSR))
+        {
+            return (comando);
+        }
+        return (NULL);
+    }
+
+    if (path == NULL)
+    {
+        fprintf(stderr, "Error: PATH no encontrado en envp\n");
+        return (NULL);
+    }
+
+    path_copy = strdup(path);
+    if (path_copy == NULL)
+    {
+        perror("Error duplicando PATH");
+        return (NULL);
+    }
+
+    comando_ruta = malloc(1024);
+    if (comando_ruta == NULL)
+    {
+        perror("Error asignando memoria");
+        free(path_copy);
+        return (NULL);
+    }
+
+    direct = strtok(path_copy, ":");
+    while (direct != NULL)
+    {
+        if (ruta(direct, comando, comando_ruta, &buffer))
+        {
+            free(path_copy);
+            return (comando_ruta);
+        }
+        direct = strtok(NULL, ":");
+    }
+
+    free(comando_ruta);
+    free(path_copy);
+    return (NULL);
 }
+
 
 /**
  *ruta- Intenta construir la ruta del comando
